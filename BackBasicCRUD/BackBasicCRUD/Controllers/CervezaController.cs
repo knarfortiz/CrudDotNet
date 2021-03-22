@@ -64,7 +64,7 @@ namespace BackBasicCRUD.Controllers
                 oRta.Mensaje = ex.Message;
             }
             return Ok(oRta);
-        }
+        } 
 
         // POST: api/<CervezaController>
         [HttpPost]

@@ -1,0 +1,49 @@
+﻿@page "/cervezas"
+
+@using System.Net.Http
+@using System.Net.Http.Json
+
+@using FrontBasicCRUD.Data
+
+@inject HttpClient Http
+
+<h3>Cerveza</h3>
+
+<div class="row">
+    <div class="col-12 text-right">
+        <a href="cervezaform">Nuevo</a>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Marca</th>
+        <th>Opciones</th>
+    </tr>
+    @if (oRta != null && oRta.Data != null)
+    {
+        @foreach (var oElement in oRta.Data)
+        {
+            <tr>
+                <td>@oElement.Id</td>
+                <td>@oElement.Nombre</td>
+                <td>@oElement.Marca</td>
+                <td>
+                    <a href="/cervezaform/@oElement.Id">Editar</a>
+                    <a href="/eliminarcerveza/@oElement.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+@code {
+    public string Url = "/api/Cerveza";
+    public Data.Respuesta<List<TipoCerveza>> oRta = new();
+
+    protected override async Task OnInitializedAsync() =>
+        oRta = await Http.GetFromJsonAsync<Respuesta<List<TipoCerveza>>>(Url);
+}

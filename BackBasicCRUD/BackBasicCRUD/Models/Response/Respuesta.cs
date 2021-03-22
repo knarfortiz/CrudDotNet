@@ -9,6 +9,7 @@ namespace BackBasicCRUD.Models.Response
     {
         public int Exito { get; set; }
         public string Mensaje { get; set; }
+        //public List<Cerveza> Data { get; set; }
         public object Data { get; set; }
 
         public Respuesta()
